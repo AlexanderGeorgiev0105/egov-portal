@@ -1,0 +1,329 @@
+/* src/styles/property-ui.css */
+
+/* Scoped only under .pp-page so it won’t affect other modules */
+.pp-page{
+  font-family:
+    ui-rounded,
+    "SF Pro Rounded",
+    "Segoe UI Rounded",
+    "Nunito",
+    "Poppins",
+    "Rubik",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  --pp-text: #0f172a;
+  --pp-muted: #5a6576;
+
+  --pp-border: rgba(46, 91, 255, 0.10);
+  --pp-border-strong: rgba(46, 91, 255, 0.14);
+
+  --pp-card-bg1: rgba(252,253,255,0.97);
+  --pp-card-bg2: rgba(245,248,255,0.92);
+
+  --pp-shadow: 0 10px 26px rgba(16, 24, 40, 0.08),
+               inset 0 1px 0 rgba(255,255,255,0.82);
+
+  --pp-shadow-soft: 0 10px 22px rgba(16, 24, 40, 0.06),
+                    inset 0 1px 0 rgba(255,255,255,0.78);
+
+  --pp-shadow-hover: 0 14px 34px rgba(16, 24, 40, 0.12),
+                     inset 0 1px 0 rgba(255,255,255,0.82);
+
+  /* ✅ Primary colors (SOLID hex -> fixes the vertical seam/line) */
+  --pp-primary-1: #3a8dff;
+  --pp-primary-2: #5aaeff;
+  --pp-primary-3: #7bc7ff;
+}
+
+/* Headings */
+.pp-head{ margin: 6px 0 12px 0; }
+.pp-title{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 950;
+  letter-spacing: 0.35px;
+  color: var(--pp-text);
+}
+.pp-subtitle{
+  margin: 8px 0 0 0;
+  color: var(--pp-muted);
+  letter-spacing: 0.15px;
+}
+.pp-muted{ color: var(--pp-muted); }
+
+/* Layout helpers */
+.pp-headRow{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pp-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pp-actionsRow{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pp-grid2{
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 700px){
+  .pp-grid2{ grid-template-columns: 1fr; }
+}
+
+/* Property hub two-column layout */
+.pp-layout{
+  display: grid;
+  grid-template-columns: 1.7fr 0.9fr; /* ✅ дясната колона по-малка */
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 980px){
+  .pp-layout{ grid-template-columns: 1fr; }
+  .pp-right{ order: 2; }
+}
+
+.pp-right{
+  max-width: 360px;   /* ✅ прави прозореца “Заявки” една идея по-малък */
+  justify-self: end;  /* ✅ стои вдясно, не се разтяга */
+}
+@media (max-width: 980px){
+  .pp-right{
+    max-width: none;
+    justify-self: stretch;
+  }
+}
+
+
+/* Cards */
+.pp-card{
+  border-radius: 26px;
+  background: linear-gradient(180deg, var(--pp-card-bg1), var(--pp-card-bg2));
+  border: 1px solid var(--pp-border);
+  box-shadow: var(--pp-shadow);
+}
+.pp-card--pad{ padding: 14px; }
+
+.pp-miniCard{
+  border-radius: 18px;
+  border: 1px solid var(--pp-border);
+  background: linear-gradient(180deg, rgba(252,253,255,0.96), rgba(245,248,255,0.92));
+  box-shadow: var(--pp-shadow-soft);
+  padding: 12px;
+}
+
+.pp-cardTitle{
+  font-weight: 950;
+  letter-spacing: 0.25px;
+  color: var(--pp-text);
+}
+
+/* Hover “lift” for item cards */
+.pp-itemCard{
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+.pp-itemCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(46, 91, 255, 0.15);
+  box-shadow: var(--pp-shadow-hover);
+  background: linear-gradient(180deg, rgba(248,251,255,0.98), rgba(238,246,255,0.95));
+}
+
+.pp-status{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.15px;
+}
+
+/* Forms */
+.pp-form{ display: grid; gap: 12px; }
+.pp-label{ font-size: 13px; margin-bottom: 6px; opacity: 0.8; }
+
+/* Inputs */
+.pp-input{
+  width: 100%;
+  border-radius: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--pp-border-strong);
+  background: rgba(255,255,255,0.85);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+  outline: none;
+}
+.pp-input:focus{
+  border-color: rgba(58, 141, 255, 0.35);
+  box-shadow: 0 0 0 4px rgba(58, 141, 255, 0.16);
+}
+
+/* Buttons (NO recolor on hover; only lift/shadow) */
+.pp-btn{
+  border-radius: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--pp-border-strong);
+  background: linear-gradient(180deg, rgba(252,253,255,0.95), rgba(243,247,255,0.90));
+  color: var(--pp-text);
+  font-weight: 850;
+  letter-spacing: 0.2px;
+  box-shadow: var(--pp-shadow-soft);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+  cursor: pointer;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+.pp-btn:hover:not(:disabled){
+  transform: translateY(-1px) translateZ(0);
+  box-shadow: 0 14px 28px rgba(16, 24, 40, 0.10), inset 0 1px 0 rgba(255,255,255,0.78);
+}
+.pp-btn:active:not(:disabled){
+  transform: translateY(0px) translateZ(0);
+}
+.pp-btn:disabled{
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ✅ PRIMARY button seam fix */
+.pp-btn--primary{
+  border: 1px solid rgba(255,255,255,0.26);
+  color: rgba(255,255,255,0.99);
+
+  background-image: linear-gradient(
+    90deg,
+    var(--pp-primary-1) 0%,
+    var(--pp-primary-2) 55%,
+    var(--pp-primary-3) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-clip: padding-box;
+
+  box-shadow: 0 14px 30px rgba(16, 24, 40, 0.14),
+              inset 0 1px 0 rgba(255,255,255,0.28);
+
+  overflow: hidden;
+}
+.pp-btn--primary:hover:not(:disabled){
+  transform: translateY(-1px) translateZ(0);
+  box-shadow: 0 18px 36px rgba(16, 24, 40, 0.16),
+              inset 0 1px 0 rgba(255,255,255,0.28);
+}
+
+/* Link styled like button */
+.pp-linkBtn{ text-decoration: none !important; display: inline-flex; align-items: center; }
+
+/* Badges */
+.pp-badge{
+  border-radius: 999px;
+  padding: 6px 10px;
+  border: 1px solid var(--pp-border-strong);
+  background: rgba(58, 141, 255, 0.12);
+  color: #0f2f6b;
+  font-weight: 850;
+  letter-spacing: 0.15px;
+}
+.pp-badge--neutral{
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #334155;
+}
+
+/* Alerts */
+.pp-alert{
+  padding: 12px;
+  border-radius: 22px;
+  border: 1px solid var(--pp-border);
+  box-shadow: var(--pp-shadow-soft);
+  background: linear-gradient(180deg, rgba(252,253,255,0.97), rgba(245,248,255,0.92));
+}
+.pp-alert--error{
+  border-color: rgba(239, 68, 68, 0.25);
+  background: rgba(254, 242, 242, 0.85);
+}
+.pp-alert--warn{
+  border-color: rgba(245, 158, 11, 0.28);
+  background: rgba(255, 251, 235, 0.90);
+}
+
+/* Links */
+.pp-link{
+  color: #256dff;
+  text-decoration: none;
+  font-weight: 800;
+}
+.pp-link:hover{ text-decoration: underline; }
+
+/* Modal (used by Property pages) */
+.pp-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.pp-modal{
+  width: min(980px, 100%);
+  max-height: 85vh;
+  overflow: auto;
+  padding: 0;
+}
+.pp-modal--sm{
+  width: min(620px, 100%);
+  overflow: hidden;
+}
+
+.pp-modalHead{
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--pp-border);
+  background: linear-gradient(180deg, rgba(252,253,255,0.98), rgba(245,248,255,0.95));
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.pp-modalBody{ padding: 14px; }
+
+/* Table */
+.pp-table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--pp-border);
+  background: rgba(255,255,255,0.75);
+}
+.pp-table thead th{
+  text-align: left;
+  font-weight: 900;
+  letter-spacing: 0.15px;
+  color: var(--pp-text);
+  background: rgba(58, 141, 255, 0.08);
+  border-bottom: 1px solid var(--pp-border);
+  padding: 10px;
+}
+.pp-table td{
+  padding: 10px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  color: #334155;
+}
+.pp-table tr:last-child td{ border-bottom: none; }

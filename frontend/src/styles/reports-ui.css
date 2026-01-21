@@ -1,0 +1,255 @@
+/* src/styles/reports-ui.css */
+/* Scoped only inside .rp-page */
+
+.rp-page{
+  font-family:
+    ui-rounded,
+    "SF Pro Rounded",
+    "Segoe UI Rounded",
+    "Nunito",
+    "Poppins",
+    "Rubik",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  --rp-text: #0f172a;
+  --rp-muted: #5a6576;
+
+  --rp-border: rgba(46, 91, 255, 0.10);
+  --rp-border-strong: rgba(46, 91, 255, 0.14);
+
+  --rp-card-bg1: rgba(252,253,255,0.97);
+  --rp-card-bg2: rgba(245,248,255,0.92);
+
+  --rp-shadow: 0 10px 26px rgba(16, 24, 40, 0.08),
+               inset 0 1px 0 rgba(255,255,255,0.82);
+
+  --rp-shadow-soft: 0 10px 22px rgba(16, 24, 40, 0.06),
+                    inset 0 1px 0 rgba(255,255,255,0.78);
+
+  --rp-shadow-hover: 0 14px 34px rgba(16, 24, 40, 0.12),
+                     inset 0 1px 0 rgba(255,255,255,0.82);
+
+  /* same blue family as Dashboard */
+  --rp-primary-1: #3a8dff;
+  --rp-primary-2: #5aaeff;
+  --rp-primary-3: #7bc7ff;
+
+  color: var(--rp-text);
+}
+
+.rp-muted{ color: var(--rp-muted); }
+
+/* Cards */
+.rp-page .card{
+  border-radius: 26px;
+  background: linear-gradient(180deg, var(--rp-card-bg1), var(--rp-card-bg2));
+  border: 1px solid var(--rp-border);
+  box-shadow: var(--rp-shadow);
+}
+
+/* Inner cards */
+.rp-page .card .card{
+  border-radius: 20px;
+  border: 1px solid rgba(46, 91, 255, 0.10);
+  box-shadow: var(--rp-shadow-soft);
+  background: linear-gradient(180deg, rgba(252,253,255,0.96), rgba(245,248,255,0.92));
+}
+
+/* Hover glow for clickable cards (links/buttons with class "card") */
+.rp-page a.card,
+.rp-page button.card{
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    filter 140ms ease;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.rp-page a.card:hover,
+.rp-page button.card:hover{
+  transform: translateY(-2px) translateZ(0);
+  border-color: rgba(46, 91, 255, 0.14);
+  box-shadow: var(--rp-shadow-hover);
+  filter: saturate(1.02);
+}
+
+/* Buttons */
+.rp-page .btn{
+  border-radius: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--rp-border-strong);
+  background: linear-gradient(180deg, rgba(252,253,255,0.95), rgba(243,247,255,0.90));
+  color: var(--rp-text);
+  font-weight: 850;
+  letter-spacing: 0.2px;
+  box-shadow: var(--rp-shadow-soft);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+  cursor: pointer;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rp-page .btn:hover:not(:disabled){
+  transform: translateY(-1px) translateZ(0);
+  box-shadow: 0 14px 28px rgba(16, 24, 40, 0.10), inset 0 1px 0 rgba(255,255,255,0.78);
+}
+
+.rp-page .btn:active:not(:disabled){
+  transform: translateY(0px) translateZ(0);
+}
+
+.rp-page .btn:disabled{
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.rp-page .btn.btn-primary,
+.rp-page .btn.primary{
+  border: 1px solid rgba(255,255,255,0.26);
+  color: rgba(255,255,255,0.99);
+
+  background-image: linear-gradient(
+    90deg,
+    var(--rp-primary-1) 0%,
+    var(--rp-primary-2) 55%,
+    var(--rp-primary-3) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-clip: padding-box;
+
+  box-shadow: 0 14px 30px rgba(16, 24, 40, 0.14),
+              inset 0 1px 0 rgba(255,255,255,0.28);
+  overflow: hidden;
+}
+
+/* Inputs */
+.rp-page .input,
+.rp-page textarea,
+.rp-page input[type="text"],
+.rp-page input[type="number"],
+.rp-page input[type="date"],
+.rp-page select{
+  border-radius: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--rp-border-strong);
+  background: rgba(255,255,255,0.85);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+  outline: none;
+}
+
+.rp-page .input:focus,
+.rp-page textarea:focus,
+.rp-page input[type="text"]:focus,
+.rp-page input[type="number"]:focus,
+.rp-page input[type="date"]:focus,
+.rp-page select:focus{
+  border-color: rgba(58, 141, 255, 0.35);
+  box-shadow: 0 0 0 4px rgba(58, 141, 255, 0.16);
+}
+
+/* Badges */
+.rp-page .badge{
+  border-radius: 999px;
+  padding: 6px 10px;
+  border: 1px solid var(--rp-border-strong);
+  background: rgba(58, 141, 255, 0.12);
+  color: #0f2f6b;
+  font-weight: 850;
+  letter-spacing: 0.15px;
+}
+
+/* Tables */
+.rp-page .table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--rp-border);
+  background: rgba(255,255,255,0.75);
+}
+
+.rp-page .table thead th{
+  text-align: left;
+  font-weight: 900;
+  letter-spacing: 0.15px;
+  color: var(--rp-text);
+  background: rgba(58, 141, 255, 0.08);
+  border-bottom: 1px solid var(--rp-border);
+  padding: 10px;
+}
+
+.rp-page .table td{
+  padding: 10px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  color: #334155;
+}
+
+.rp-page .table tr:last-child td{
+  border-bottom: none;
+}
+
+/* Optional modal helpers (ако ти трябват като при Properties/Health) */
+.rp-modalOverlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 9999;
+}
+
+.rp-modal{
+  width: min(860px, 100%);
+  max-height: min(78vh, 720px);
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 26px 70px rgba(0,0,0,0.22);
+  background: linear-gradient(180deg, rgba(252,253,255,0.98), rgba(245,248,255,0.95));
+}
+
+.rp-modalHead{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.rp-modalTitle{
+  font-weight: 950;
+  letter-spacing: 0.2px;
+  color: #0f172a;
+}
+
+.rp-modalBody{
+  padding: 14px 16px;
+  overflow: auto;
+  max-height: calc(78vh - 62px);
+}
+
+.rp-modalClose{
+  border: 1px solid rgba(46, 91, 255, 0.14);
+  background: rgba(255,255,255,0.75);
+  border-radius: 14px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-weight: 900;
+}

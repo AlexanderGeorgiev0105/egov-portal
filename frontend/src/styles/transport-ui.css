@@ -1,0 +1,303 @@
+/* src/styles/transport-ui.css */
+/* Scoped only inside .tp-page */
+
+.tp-page{
+  font-family:
+    ui-rounded,
+    "SF Pro Rounded",
+    "Segoe UI Rounded",
+    "Nunito",
+    "Poppins",
+    "Rubik",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  --tp-text: #0f172a;
+  --tp-muted: #5a6576;
+
+  --tp-border: rgba(46, 91, 255, 0.10);
+  --tp-border-strong: rgba(46, 91, 255, 0.14);
+
+  --tp-card-bg1: rgba(252,253,255,0.97);
+  --tp-card-bg2: rgba(245,248,255,0.92);
+
+  --tp-shadow: 0 10px 26px rgba(16, 24, 40, 0.08),
+               inset 0 1px 0 rgba(255,255,255,0.82);
+
+  --tp-shadow-soft: 0 10px 22px rgba(16, 24, 40, 0.06),
+                    inset 0 1px 0 rgba(255,255,255,0.78);
+
+  --tp-shadow-hover: 0 14px 34px rgba(16, 24, 40, 0.12),
+                     inset 0 1px 0 rgba(255,255,255,0.82);
+
+  /* same blue family as Dashboard/Health */
+  --tp-primary-1: #3a8dff;
+  --tp-primary-2: #5aaeff;
+  --tp-primary-3: #7bc7ff;
+
+  color: var(--tp-text);
+}
+
+.tp-muted{ color: var(--tp-muted); }
+
+/* Cards */
+.tp-page .card{
+  border-radius: 26px;
+  background: linear-gradient(180deg, var(--tp-card-bg1), var(--tp-card-bg2));
+  border: 1px solid var(--tp-border);
+  box-shadow: var(--tp-shadow);
+}
+
+.tp-page .card .card{
+  border-radius: 20px;
+  border: 1px solid rgba(46, 91, 255, 0.10);
+  box-shadow: var(--tp-shadow-soft);
+  background: linear-gradient(180deg, rgba(252,253,255,0.96), rgba(245,248,255,0.92));
+}
+
+/* ✅ HOVER “GLOW” for SERVICE CARDS ONLY (Link cards) */
+.tp-page a.card{
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease,
+    filter 140ms ease;
+}
+
+.tp-page a.card::after{
+  content: "";
+  position: absolute;
+  right: -70px;
+  top: -70px;
+  width: 190px;
+  height: 190px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(58,141,255,0.14), rgba(58,141,255,0.0) 65%);
+  opacity: 0.45;
+  transition: opacity 140ms ease, transform 140ms ease;
+  pointer-events: none;
+}
+
+.tp-page a.card:hover{
+  border-color: rgba(46, 91, 255, 0.15);
+  box-shadow: var(--tp-shadow-hover);
+  transform: translateY(-2px);
+  filter: saturate(1.02);
+  background: linear-gradient(180deg, rgba(248,251,255,0.98), rgba(238,246,255,0.95));
+}
+
+.tp-page a.card:hover::after{
+  opacity: 0.60;
+  transform: translateY(6px);
+}
+
+.tp-page a.card:active{
+  transform: translateY(-1px);
+}
+
+/* Buttons (supports both .btn.primary and .btn.btn-primary) */
+.tp-page .btn{
+  border-radius: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--tp-border-strong);
+  background: linear-gradient(180deg, rgba(252,253,255,0.95), rgba(243,247,255,0.90));
+  color: var(--tp-text);
+  font-weight: 850;
+  letter-spacing: 0.2px;
+  box-shadow: var(--tp-shadow-soft);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+  cursor: pointer;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tp-page .btn:hover:not(:disabled){
+  transform: translateY(-1px) translateZ(0);
+  box-shadow: 0 14px 28px rgba(16, 24, 40, 0.10), inset 0 1px 0 rgba(255,255,255,0.78);
+}
+
+.tp-page .btn:active:not(:disabled){
+  transform: translateY(0px) translateZ(0);
+}
+
+.tp-page .btn:disabled{
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.tp-page .btn.primary,
+.tp-page .btn.btn-primary{
+  border: 1px solid rgba(255,255,255,0.26);
+  color: rgba(255,255,255,0.99);
+
+  background-image: linear-gradient(
+    90deg,
+    var(--tp-primary-1) 0%,
+    var(--tp-primary-2) 55%,
+    var(--tp-primary-3) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-clip: padding-box;
+
+  box-shadow: 0 14px 30px rgba(16, 24, 40, 0.14),
+              inset 0 1px 0 rgba(255,255,255,0.28);
+  overflow: hidden;
+}
+
+/* Small submit button helper (prevents stretching in grid forms) */
+.tp-btnCompact{
+  justify-self: start;
+  width: fit-content;
+}
+
+/* Inputs */
+.tp-page .input,
+.tp-page input[type="date"],
+.tp-page input[type="number"],
+.tp-page select,
+.tp-page .select,
+.tp-page textarea{
+  border-radius: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--tp-border-strong);
+  background: rgba(255,255,255,0.85);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+  outline: none;
+}
+
+.tp-page .input:focus,
+.tp-page input[type="date"]:focus,
+.tp-page input[type="number"]:focus,
+.tp-page select:focus,
+.tp-page .select:focus,
+.tp-page textarea:focus{
+  border-color: rgba(58, 141, 255, 0.35);
+  box-shadow: 0 0 0 4px rgba(58, 141, 255, 0.16);
+}
+
+/* Badges */
+.tp-page .badge{
+  border-radius: 999px;
+  padding: 6px 10px;
+  border: 1px solid var(--tp-border-strong);
+  background: rgba(58, 141, 255, 0.12);
+  color: #0f2f6b;
+  font-weight: 850;
+  letter-spacing: 0.15px;
+}
+
+/* Tables */
+.tp-page .table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--tp-border);
+  background: rgba(255,255,255,0.75);
+}
+
+.tp-page .table thead th{
+  text-align: left;
+  font-weight: 900;
+  letter-spacing: 0.15px;
+  color: var(--tp-text);
+  background: rgba(58, 141, 255, 0.08);
+  border-bottom: 1px solid var(--tp-border);
+  padding: 10px;
+}
+
+.tp-page .table td{
+  padding: 10px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  color: #334155;
+}
+
+.tp-page .table tr:last-child td{
+  border-bottom: none;
+}
+
+/* Inline alerts (for pages that show error box) */
+.tp-alert{
+  padding: 12px;
+  border-radius: 22px;
+  border: 1px solid var(--tp-border);
+  box-shadow: var(--tp-shadow-soft);
+  background: linear-gradient(180deg, rgba(252,253,255,0.97), rgba(245,248,255,0.92));
+}
+
+.tp-alert--error{
+  border-color: rgba(239, 68, 68, 0.25);
+  background: rgba(254, 242, 242, 0.85);
+}
+
+.tp-alert--warn{
+  border-color: rgba(245, 158, 11, 0.28);
+  background: rgba(255, 251, 235, 0.90);
+}
+
+/* Optional modal style (if later решиш да правиш "Виж всички" като modal) */
+.tp-modalOverlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 9999;
+}
+
+.tp-modal{
+  width: min(860px, 100%);
+  max-height: min(78vh, 720px);
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 26px 70px rgba(0,0,0,0.22);
+  background: linear-gradient(180deg, rgba(252,253,255,0.98), rgba(245,248,255,0.95));
+}
+
+.tp-modalHead{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.tp-modalTitle{
+  font-weight: 950;
+  letter-spacing: 0.2px;
+  color: #0f172a;
+}
+
+.tp-modalBody{
+  padding: 14px 16px;
+  overflow: auto;
+  max-height: calc(78vh - 62px);
+}
+
+.tp-modalClose{
+  border: 1px solid rgba(46, 91, 255, 0.14);
+  background: rgba(255,255,255,0.75);
+  border-radius: 14px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-weight: 900;
+}
